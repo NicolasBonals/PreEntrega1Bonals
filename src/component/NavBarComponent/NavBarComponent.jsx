@@ -27,7 +27,6 @@ const NavBarComponent = () => {
           </Nav>
         </Navbar.Collapse>
         <CartWidget />
-        {/* Acá la imagen del carrito */}
       </Container>
     </Navbar>
     )

@@ -1,20 +1,32 @@
-
-//Estilos
-//import './App.css';
-//importacion de estilos de bootstrap
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBarComponent from './component/NavBarComponent/NavBarComponent';
 import ItemListContainer from './component/ItemListContainer/ItemListContainer';
-// import CountComponent from './component/CountComponent/Countcomponent';
-//CountComponent se encuentra comentado ya que no forma parte de la primera entrega
+import CountComponent from './component/CountComponent/Countcomponent';
+import MainLayout from './layouts/MainLayout';
+import { getProducts } from './services';
+
+  
+
 const App = () => {
+  const [productsData, setProductsData] = useState([]);
+  
+  useEffect(() => {
+    getProducts()
+      .then((response) => {
+        setProductsData(response.data.products)
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+  }, []);
+  
   return (
-    <div style={{width: '100vw', height: '100vh', backgroundColor: "lightblue"}}>
+    <MainLayout>
       <NavBarComponent />
-      <ItemListContainer greeting="Hola a todos" />
-      <ItemListContainer greeting="Gracias por visitarnos" />
-      {/* <CountComponent /> */}
-    </div>
+      <ItemListContainer greetings="Hola" productsData={productsData} />
+      <CountComponent />
+    </MainLayout>
   );
 };
 
