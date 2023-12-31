@@ -1,33 +1,28 @@
-import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBarComponent from './component/NavBarComponent/NavBarComponent';
-import ItemListContainer from './component/ItemListContainer/ItemListContainer';
-import CountComponent from './component/CountComponent/Countcomponent';
+// import CountComponent from './component/CountComponent/Countcomponent';
+// import UserData from './component/UserData';
 import MainLayout from './layouts/MainLayout';
-import { getProducts } from './services';
+import { MainRouter } from './router/MainRouter';
 
-  
 
 const App = () => {
-  const [productsData, setProductsData] = useState([]);
-  
-  useEffect(() => {
-    getProducts()
-      .then((response) => {
-        setProductsData(response.data.products)
-      })
-      .catch((error)=>{
-        console.log(error);
-      });
-  }, []);
   
   return (
     <MainLayout>
-      <NavBarComponent />
-      <ItemListContainer greetings="Hola" productsData={productsData} />
-      <CountComponent />
+      <MainRouter />
+
+      {/* <CountComponent /> */}
+      {/* <UserData firstName={"Nico"} lastName={"Perez"} age={21} birthdate={"28/10/2002"} myObject={
+        {
+        product: "Nuevo Producto",
+        quantity:"10"
+        }
+      }
+      /> */}
     </MainLayout>
   );
 };
 
-export default App;
+export default App;   
+
+
